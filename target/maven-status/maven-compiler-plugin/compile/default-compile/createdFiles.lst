@@ -1,0 +1,6 @@
+com\example\demo\global\Status.class
+com\example\demo\DemoApplication.class
+com\example\demo\controllers\TaskController.class
+com\example\demo\services\TaskService.class
+com\example\demo\entities\Task.class
+com\example\demo\repositories\TaskRepository.class
