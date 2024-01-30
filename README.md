@@ -1,0 +1,15 @@
+1. Baza danych - coś tam powiązane z emailem/imieniem nazwiskiem/peselem w.e. z datą.
+2. Apka serverowa, ktora będzie przyjmować GET requesty od apek mobilnych.
+3. apka mobilna, która będzie wysyłać zapytania o końce terminów. // poki co maile, pozniej sie pomysli czy pisac druga apke
+
+
+clue -> Apka, która ma przypominać o kończących się terminach odnowienia umowy / zapłaty
+ za ubezpieczenie operując na jakiejś bazie danych
+ (jakiś cloud z datapipelinem, który będzie wypluwał tylko te kończące się terminy?)
+
+
+
+ SELECT * FROM INSURANCE;
+
+ INSERT INTO Insurance (CLIENT_PHONE, CT_PHONE, END_DATE, START_DATE, ID, CT_LASTNAME, CT_NAME, LASTNAME, NAME, TYPE)
+ VALUES ('111222333', '222111333', '2024-02-29', '2023-02-27', '19fc0dd4-96cc-4e45-816e-6f226c2c5fa3', 'ROBAK', 'KAMIL', 'KON', 'MARIUSZ', 'SAMOCHOD');
