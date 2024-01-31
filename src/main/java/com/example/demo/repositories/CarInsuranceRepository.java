@@ -7,15 +7,16 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 public interface CarInsuranceRepository extends JpaRepository<CarInsurance, UUID> {
 
-    @Query("SELECT i FROM CarInsurance i WHERE i.id = :id")
-    Collection<CarInsurance> findCarInsuranceById(@Param("id") UUID id);
+    @Query(value = "SELECT i FROM CarInsurance i WHERE i.id = :id")
+    Optional<CarInsurance> findCarInsuranceById(@Param("id") UUID id);
 
-    @Query("SELECT i FROM CarInsurance i WHERE i.name = :name")
-    Collection<CarInsurance> findCarInsuranceByName(@Param("name") String name);
+    @Query("SELECT i FROM CarInsurance i WHERE i.client.id = :id")
+    Collection<Optional<CarInsurance>> findCarInsuranceByClientId(@Param("id") UUID id);
 
 }

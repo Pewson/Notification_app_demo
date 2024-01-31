@@ -1,7 +1,6 @@
 package com.example.demo.scheduler;
 
-import com.example.demo.entities.CarInsurance;
-import com.example.demo.models.CarInsuranceDTO;
+import com.example.demo.viewmodels.CarInsuranceDTO;
 import com.example.demo.services.CarInsuranceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;

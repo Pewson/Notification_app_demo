@@ -1,8 +1,10 @@
 package com.example.demo.entities;
 
-import com.example.demo.models.ClientDTO;
+import com.example.demo.interfaces.Insurance;
+import com.example.demo.viewmodels.ClientDTO;
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -17,6 +19,7 @@ public class Client {
     private String email;
     private String city;
     private String address;
+    private List<UUID> insuranceList;
     private String login;
     private String password;
 
@@ -49,14 +52,6 @@ public class Client {
         return address;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
     public Client(String name, String lastName,
                   Integer phoneNumber, String email,
                   String city, String address,
@@ -74,7 +69,7 @@ public class Client {
     public Client() {
     }
 
-    public static Client toEntity(ClientDTO clientDTO){
+    public static Client toEntity(ClientDTO clientDTO, String login, String password){
         return new Client(
                 clientDTO.getName(),
                 clientDTO.getLastName(),
@@ -82,7 +77,7 @@ public class Client {
                 clientDTO.getEmail(),
                 clientDTO.getCity(),
                 clientDTO.getAddress(),
-                clientDTO.getLogin(),
-                clientDTO.getPassword());
+                login,
+                password);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.demo.models;
+package com.example.demo.viewmodels;
 
 import com.example.demo.entities.Client;
 //todo maskowanie hasla/loginu
@@ -9,16 +9,6 @@ public class ClientDTO {
     private String email;
     private String City;
     private String address;
-    private String login;
-    private String password;
-
-    public String getLogin() {
-        return login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
 
     public String getName() {
         return name;
