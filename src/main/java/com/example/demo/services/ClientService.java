@@ -29,6 +29,9 @@ public class ClientService {
                 .collect(Collectors.toList());
     }
 
-    public ClientDTO findClientById(UUID id){
-        return ClientDTO.toDTO(clientRepository.findById(id).orElse(new Client())); }
+    public ClientDTO updateClient(Client client) {
+        Client updatedClient = clientRepository.findClientByID(client.getId())
+                .orElseThrow(NullPointerException::new);
+        return ClientDTO.toDTO(clientRepository.save(updatedClient.update(client)));
+    }
 }

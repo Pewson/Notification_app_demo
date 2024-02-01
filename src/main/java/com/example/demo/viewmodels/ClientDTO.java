@@ -7,7 +7,7 @@ public class ClientDTO {
     private String lastName;
     private Integer phoneNumber;
     private String email;
-    private String City;
+    private String city;
     private String address;
 
     public String getName() {
@@ -27,7 +27,7 @@ public class ClientDTO {
     }
 
     public String getCity() {
-        return City;
+        return city;
     }
 
     public String getAddress() {
@@ -39,7 +39,7 @@ public class ClientDTO {
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        City = city;
+        this.city = city;
         this.address = address;
     }
 

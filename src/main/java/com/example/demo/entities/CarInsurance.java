@@ -1,6 +1,6 @@
 package com.example.demo.entities;
 
-import com.example.demo.interfaces.Insurance;
+import com.example.demo.baseEntities.Insurance;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
@@ -33,8 +33,8 @@ public class CarInsurance extends Insurance {
         this.startDate = carInsurance.getStartDate();
         this.endDate = carInsurance.getEndDate();
         this.ctName = carInsurance.getCtName();
-        this.ctLastname = carInsurance.ctLastname;
-        this.ctPhone = carInsurance.ctPhone;
+        this.ctLastname = carInsurance.getCtLastname();
+        this.ctPhone = carInsurance.getCtPhone();
         } else {
             System.out.println("wrong id");
         }

@@ -1,4 +1,4 @@
-package com.example.demo.interfaces;
+package com.example.demo.baseEntities;
 
 import com.example.demo.entities.Client;
 import com.fasterxml.jackson.annotation.JsonFormat;
