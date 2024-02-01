@@ -3,6 +3,7 @@ package com.example.demo.entities;
 import com.example.demo.baseEntities.User;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -11,9 +12,11 @@ import java.util.UUID;
 public class Client extends User {
     private String city;
     private String address;
-    private List<UUID> insuranceList;
+    private List<UUID> insuranceList = new ArrayList<>();
 
-
+    public List<UUID> getInsuranceList() {
+        return insuranceList;
+    }
 
     public String getCity() {
         return city;
@@ -61,5 +64,9 @@ public class Client extends User {
             System.out.println("ID mismatch");
         }
         return this;
+    }
+
+    public void updateInsuranceList(UUID insId){
+        this.insuranceList.add(insId);
     }
 }

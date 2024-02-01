@@ -1,6 +1,7 @@
 package com.example.demo.baseEntities;
 
 
+import com.example.demo.global.Role;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,11 +14,11 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected UUID id;
-
     protected String name;
     protected String lastName;
     protected Integer phoneNumber;
     protected String email;
+    protected Role role;
     protected String login;
     protected String password;
 
@@ -58,5 +59,9 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public Role getRole() {
+        return role;
     }
 }

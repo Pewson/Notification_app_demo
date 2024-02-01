@@ -5,6 +5,7 @@ import com.example.demo.entities.Client;
 import com.example.demo.repositories.CarInsuranceRepository;
 import com.example.demo.repositories.ClientRepository;
 import com.example.demo.viewmodels.CarInsuranceDTO;
+import jakarta.validation.constraints.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +27,11 @@ public class CarInsuranceService {
     }
 
     public CarInsuranceDTO addInsurance(CarInsurance carInsurance) {
-        return CarInsuranceDTO.toDTO(
-                carInsuranceRepository.save(carInsurance));
+        CarInsuranceDTO insDto = CarInsuranceDTO.toDTO(carInsuranceRepository.save(carInsurance));
+        Client client = clientRepository.findClientByID(insDto.getClientId()).orElseThrow(NullPointerException::new);
+        client.updateInsuranceList(carInsurance.getId());
+        clientRepository.save(client);
+        return insDto;
     }
 
     public CarInsuranceDTO updateInsurance(CarInsurance carInsurance){
