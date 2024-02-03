@@ -21,10 +21,10 @@ public class EndDatesChecker {
 
     @Scheduled(cron = "0 59 23 * * ?") // runs every day at 23:59
     public void yourCronScheduledMethod() {
-        List<CarInsuranceDTO> endDateCarInsurances = carInsuranceService.getAll().stream()
+        List<CarInsuranceDTO> endDateCarInsurances = carInsuranceService.findAll().stream()
                 .filter(carInsurance ->
                         carInsurance.getEndDate().isBefore(LocalDate.now().plusMonths(1)))
-                .collect(Collectors.toList());
+                .toList();
         if (endDateCarInsurances.size() > 0){
             System.out.println("dziala");
         }

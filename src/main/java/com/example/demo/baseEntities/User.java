@@ -30,6 +30,9 @@ public class User {
         this.email = email;
     }
 
+    public User() {
+    }
+
     public UUID getId() {
         return id;
     }
@@ -50,9 +53,6 @@ public class User {
         return email;
     }
 
-    public User() {
-    }
-
     public String getLogin() {
         return login;
     }
@@ -64,4 +64,5 @@ public class User {
     public Role getRole() {
         return role;
     }
+
 }

@@ -57,9 +57,34 @@ public class Employee extends User {
         return super.getRole();
     }
 
+    public Manager getManager() {
+        return manager;
+    }
+
+    public List<Client> getClientList() {
+        return clientList;
+    }
+
+    public Employee(){}
+
     public Employee(String name, String lastName, Integer phoneNumber, String email, Manager manager, List<Client> clientList) {
         super(name, lastName, phoneNumber, email);
         this.manager = manager;
         this.clientList = clientList;
+        this.role = Role.EMPLOYEE;
+    }
+
+    public Employee update(Employee employee) {
+        if (this.id.equals(employee.id)){
+            this.name = employee.getName();
+            this.lastName = employee.getLastName();
+            this.phoneNumber = employee.getPhoneNumber();
+            this.email = employee.getEmail();
+            this.manager = employee.getManager();
+            this.clientList = employee.getClientList();
+        } else {
+            System.out.println("ID mismatch");
+        }
+        return this;
     }
 }

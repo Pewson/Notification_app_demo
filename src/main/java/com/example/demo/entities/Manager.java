@@ -61,4 +61,30 @@ public class Manager extends User {
         return super.getRole();
     }
 
+    public List<Employee> getEmployeeList() {
+        return employeeList;
+    }
+
+    public List<Client> getClientList() {
+        return clientList;
+    }
+    public Manager(){}
+
+    public Manager(String name, String lastName, Integer phoneNumber, String email, List<Employee> employeeList){
+        super(name, lastName, phoneNumber, email);
+        this.employeeList = employeeList;
+        this.role = Role.MANAGER;
+    }
+    public Manager update(Manager manager) {
+        if (this.id.equals(manager.id)) {
+            this.name = manager.getName();
+            this.lastName = manager.getLastName();
+            this.phoneNumber = manager.getPhoneNumber();
+            this.email = manager.getEmail();
+            this.employeeList = manager.getEmployeeList();
+        } else {
+            System.out.println("ID Mismatch");
+        }
+        return this;
+    }
 }

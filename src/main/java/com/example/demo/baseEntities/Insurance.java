@@ -18,9 +18,10 @@ public class Insurance {
     protected LocalDate startDate;
     @JsonFormat(pattern = "yyyy-MM-dd")
     protected LocalDate endDate;
-    protected String ctName;
-    protected String ctLastname;
-    protected Integer ctPhone;
+    //todo do przerobienia na employee
+        protected String ctName;
+        protected String ctLastname;
+        protected Integer ctPhone;
 
     public Insurance(Client client, LocalDate startDate,
                      LocalDate endDate, String ctName,

@@ -36,19 +36,18 @@ public class CarInsuranceController {
 
     @GetMapping("/find-all")
     public ResponseEntity<List<CarInsuranceDTO>> findAll() {
-        List<CarInsuranceDTO> carInsurances = carInsuranceService.getAll();
+        List<CarInsuranceDTO> carInsurances = carInsuranceService.findAll();
         return new ResponseEntity<>(carInsurances, HttpStatus.OK);
     }
-
     @GetMapping("/find-by-name")
-    public ResponseEntity<List<CarInsuranceDTO>> findByName(@RequestParam UUID id) {
-        List<CarInsuranceDTO> carInsurances = carInsuranceService.getAllByName(id);
+    public ResponseEntity<List<CarInsuranceDTO>> findByName(@RequestParam String name) {
+        List<CarInsuranceDTO> carInsurances = carInsuranceService.findAllByName(name);
         return new ResponseEntity<>(carInsurances, HttpStatus.OK);
     }
 
-    @GetMapping("/find-by-end")
-    public ResponseEntity<List<CarInsuranceDTO>> findByEnd(@RequestParam UUID id) {
-        List<CarInsuranceDTO> carInsurances = carInsuranceService.getEndDateInsurance(id);
+    @GetMapping("/find-expiring")
+    public ResponseEntity<List<CarInsuranceDTO>> findByExpiring(@RequestParam UUID id) {
+        List<CarInsuranceDTO> carInsurances = carInsuranceService.findExpiringInsurance(id);
         return new ResponseEntity<>(carInsurances, HttpStatus.OK);
     }
 }

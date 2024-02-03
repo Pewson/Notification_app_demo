@@ -40,22 +40,22 @@ public class CarInsuranceService {
         return CarInsuranceDTO.toDTO(carInsuranceRepository.save(updatedCarInsurance.update(carInsurance)));
     }
 
-    public List<CarInsuranceDTO> getAll() {
+    public List<CarInsuranceDTO> findAll() {
         return carInsuranceRepository.findAll()
                 .stream()
                 .map(CarInsuranceDTO::toDTO)
                 .collect(Collectors.toList());
     }
 
-    public List<CarInsuranceDTO> getAllByName(UUID id) {
-        return carInsuranceRepository.findCarInsuranceByClientId(id)
+    public List<CarInsuranceDTO> findAllByName(String name) {
+        return carInsuranceRepository.findCarInsuranceByClientName(name)
                 .stream()
                 .map(o -> o.orElse(new CarInsurance()))
                 .map(CarInsuranceDTO::toDTO)
                 .collect(Collectors.toList());
     }
 
-    public List<CarInsuranceDTO> getEndDateInsurance(UUID id) {
+    public List<CarInsuranceDTO> findExpiringInsurance(UUID id) {
         return carInsuranceRepository.findCarInsuranceByClientId(id)
                 .stream()
                 .map(o -> o.orElse(new CarInsurance()))

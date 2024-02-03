@@ -1,7 +1,9 @@
 package com.example.demo.entities;
 
 import com.example.demo.baseEntities.User;
-import jakarta.persistence.*;
+import com.example.demo.global.Role;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +16,6 @@ public class Client extends User {
     private String address;
     private List<UUID> insuranceList = new ArrayList<>();
 
-    public List<UUID> getInsuranceList() {
-        return insuranceList;
-    }
-
     public String getCity() {
         return city;
     }
@@ -25,6 +23,11 @@ public class Client extends User {
     public String getAddress() {
         return address;
     }
+
+    public List<UUID> getInsuranceList() {
+        return insuranceList;
+    }
+
 
     public Client(String name, String lastName,
                   Integer phoneNumber, String email,
@@ -35,6 +38,7 @@ public class Client extends User {
         this.address = address;
         this.login = login;
         this.password = password;
+        this.role = Role.CLIENT;
     }
 
     public Client() {
@@ -53,7 +57,7 @@ public class Client extends User {
 //    }
 
     public Client update(Client client) {
-        if (this.id.equals(client.id)){
+        if (this.id.equals(client.id)) {
             this.name = client.getName();
             this.lastName = client.getLastName();
             this.phoneNumber = client.getPhoneNumber();
@@ -66,7 +70,7 @@ public class Client extends User {
         return this;
     }
 
-    public void updateInsuranceList(UUID insId){
+    public void updateInsuranceList(UUID insId) {
         this.insuranceList.add(insId);
     }
 }
