@@ -17,46 +17,6 @@ public class Employee extends User {
     @OneToMany(fetch = FetchType.LAZY)
     private List<Client> clientList = new ArrayList<>();
 
-    @Override
-    public UUID getId() {
-        return super.getId();
-    }
-
-    @Override
-    public String getName() {
-        return super.getName();
-    }
-
-    @Override
-    public String getLastName() {
-        return super.getLastName();
-    }
-
-    @Override
-    public Integer getPhoneNumber() {
-        return super.getPhoneNumber();
-    }
-
-    @Override
-    public String getEmail() {
-        return super.getEmail();
-    }
-
-    @Override
-    public String getLogin() {
-        return super.getLogin();
-    }
-
-    @Override
-    public String getPassword() {
-        return super.getPassword();
-    }
-
-    @Override
-    public Role getRole() {
-        return super.getRole();
-    }
-
     public Manager getManager() {
         return manager;
     }
@@ -65,14 +25,16 @@ public class Employee extends User {
         return clientList;
     }
 
-    public Employee(){}
-
-    public Employee(String name, String lastName, Integer phoneNumber, String email, Manager manager, List<Client> clientList) {
-        super(name, lastName, phoneNumber, email);
+    public Employee(String name, String lastName,
+                    Integer phoneNumber, String email,
+                    Role role, UserCreds userCreds,
+                    Manager manager, List<Client> clientList) {
+        super(name, lastName, phoneNumber, email, role, userCreds);
         this.manager = manager;
         this.clientList = clientList;
-        this.role = Role.EMPLOYEE;
     }
+
+    public Employee(){}
 
     public Employee update(Employee employee) {
         if (this.id.equals(employee.id)){

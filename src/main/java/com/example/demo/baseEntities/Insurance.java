@@ -1,6 +1,7 @@
 package com.example.demo.baseEntities;
 
 import com.example.demo.entities.Client;
+import com.example.demo.entities.Employee;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
@@ -18,20 +19,14 @@ public class Insurance {
     protected LocalDate startDate;
     @JsonFormat(pattern = "yyyy-MM-dd")
     protected LocalDate endDate;
-    //todo do przerobienia na employee
-        protected String ctName;
-        protected String ctLastname;
-        protected Integer ctPhone;
+    @ManyToOne
+    protected Employee employee;
 
     public Insurance(Client client, LocalDate startDate,
-                     LocalDate endDate, String ctName,
-                     String ctLastname, Integer ctPhone) {
+                     LocalDate endDate) {
         this.client = client;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.ctName = ctName;
-        this.ctLastname = ctLastname;
-        this.ctPhone = ctPhone;
     }
 
     public UUID getId() {
@@ -48,18 +43,6 @@ public class Insurance {
 
     public LocalDate getEndDate() {
         return endDate;
-    }
-
-    public String getCtName() {
-        return ctName;
-    }
-
-    public String getCtLastname() {
-        return ctLastname;
-    }
-
-    public Integer getCtPhone() {
-        return ctPhone;
     }
 
     public Insurance() {

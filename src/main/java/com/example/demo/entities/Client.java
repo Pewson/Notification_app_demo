@@ -2,7 +2,10 @@ package com.example.demo.entities;
 
 import com.example.demo.baseEntities.User;
 import com.example.demo.global.Role;
+import com.sun.jdi.PrimitiveValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.util.ArrayList;
@@ -16,6 +19,14 @@ public class Client extends User {
     private String address;
     private List<UUID> insuranceList = new ArrayList<>();
 
+    @ManyToOne
+    private Employee employee;
+
+    @OneToMany
+    private Manager manager;
+
+    private UserCreds userCreds;
+
     public String getCity() {
         return city;
     }
@@ -24,37 +35,24 @@ public class Client extends User {
         return address;
     }
 
-    public List<UUID> getInsuranceList() {
-        return insuranceList;
-    }
-
-
     public Client(String name, String lastName,
                   Integer phoneNumber, String email,
+                  Role role, UserCreds userCreds,
                   String city, String address,
-                  String login, String password) {
-        super(name, lastName, phoneNumber, email);
+                  List<UUID> insuranceList,
+                  Employee employee, Manager manager,
+                  UserCreds userCreds1) {
+        super(name, lastName, phoneNumber, email, role, userCreds);
         this.city = city;
         this.address = address;
-        this.login = login;
-        this.password = password;
-        this.role = Role.CLIENT;
+        this.insuranceList = insuranceList;
+        this.employee = employee;
+        this.manager = manager;
+        this.userCreds = userCreds1;
     }
 
     public Client() {
     }
-
-//    public static Client toEntity(ClientDTO clientDTO, String login, String password){
-//        return new Client(
-//                clientDTO.getName(),
-//                clientDTO.getLastName(),
-//                clientDTO.getPhoneNumber(),
-//                clientDTO.getEmail(),
-//                clientDTO.getCity(),
-//                clientDTO.getAddress(),
-//                login,
-//                password);
-//    }
 
     public Client update(Client client) {
         if (this.id.equals(client.id)) {

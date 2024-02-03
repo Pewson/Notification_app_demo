@@ -2,6 +2,7 @@ package com.example.demo.entities;
 
 import com.example.demo.baseEntities.Insurance;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 import java.time.LocalDate;
@@ -15,6 +16,10 @@ public class CarInsurance extends Insurance {
     public String getLicensePlate() {
         return licensePlate;
     }
+    @ManyToOne
+    private Employee employee;
+
+    private Client client;
 
     public CarInsurance(Client client, String licensePlate,
                         LocalDate startDate, LocalDate endDate,

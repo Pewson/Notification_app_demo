@@ -2,7 +2,6 @@ package com.example.demo.controllers;
 
 import com.example.demo.entities.Manager;
 import com.example.demo.services.ManagerService;
-import com.example.demo.viewmodels.EmployeeDTO;
 import com.example.demo.viewmodels.ManagerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,7 +38,7 @@ public class ManagerController {
     }
     @GetMapping("/find-by-id")
     public ResponseEntity<ManagerDTO> findById(@RequestParam UUID id){
-        ManagerDTO manager = managerService.findAllById(id);
+        ManagerDTO manager = managerService.findById(id);
         return new ResponseEntity<>(manager, HttpStatus.OK);
     }
 }

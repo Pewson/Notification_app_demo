@@ -40,8 +40,8 @@ public class CarInsuranceController {
         return new ResponseEntity<>(carInsurances, HttpStatus.OK);
     }
     @GetMapping("/find-by-name")
-    public ResponseEntity<List<CarInsuranceDTO>> findByName(@RequestParam String name) {
-        List<CarInsuranceDTO> carInsurances = carInsuranceService.findAllByName(name);
+    public ResponseEntity<List<CarInsuranceDTO>> findByName(@RequestParam UUID id) {
+        List<CarInsuranceDTO> carInsurances = carInsuranceService.findAllByClientId(id);
         return new ResponseEntity<>(carInsurances, HttpStatus.OK);
     }
 

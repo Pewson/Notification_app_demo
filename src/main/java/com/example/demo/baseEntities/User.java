@@ -1,6 +1,7 @@
 package com.example.demo.baseEntities;
 
 
+import com.example.demo.entities.UserCreds;
 import com.example.demo.global.Role;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,15 +20,15 @@ public class User {
     protected Integer phoneNumber;
     protected String email;
     protected Role role;
-    protected String login;
-    protected String password;
+    protected UserCreds userCreds;
 
-    public User(String name, String lastName,
-                Integer phoneNumber, String email) {
+    public User(String name, String lastName, Integer phoneNumber, String email, Role role, UserCreds userCreds) {
         this.name = name;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.role = role;
+        this.userCreds = userCreds;
     }
 
     public User() {
@@ -53,16 +54,11 @@ public class User {
         return email;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
     public Role getRole() {
         return role;
     }
 
+    public UserCreds getUserCreds() {
+        return userCreds;
+    }
 }
