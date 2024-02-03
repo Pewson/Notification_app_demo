@@ -32,10 +32,7 @@ public class ManagerService {
                 .map(ManagerDTO::toDTO)
                 .collect(Collectors.toList());
     }
-    public List<ManagerDTO> findAllById (UUID id){
-        return managerRepository.findById(id)
-                .stream()
-                .map(ManagerDTO::toDTO)
-                .collect(Collectors.toList());
+    public ManagerDTO findAllById (UUID id){
+        return ManagerDTO.toDTO(managerRepository.findById(id).orElseThrow(NullPointerException::new));
     }
 }

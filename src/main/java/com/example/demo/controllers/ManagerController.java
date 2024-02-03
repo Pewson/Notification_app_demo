@@ -38,8 +38,8 @@ public class ManagerController {
         return new ResponseEntity<List<ManagerDTO>>(managers, HttpStatus.OK);
     }
     @GetMapping("/find-by-id")
-    public ResponseEntity<List<ManagerDTO>> findById(@RequestParam UUID id){
-        List<ManagerDTO> managers = managerService.findAllById(id);
-        return new ResponseEntity<List<ManagerDTO>>(managers, HttpStatus.OK);
+    public ResponseEntity<ManagerDTO> findById(@RequestParam UUID id){
+        ManagerDTO manager = managerService.findAllById(id);
+        return new ResponseEntity<>(manager, HttpStatus.OK);
     }
 }
