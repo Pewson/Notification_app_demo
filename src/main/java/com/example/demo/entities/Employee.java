@@ -29,7 +29,7 @@ public class Employee extends User {
                     Integer phoneNumber, String email,
                     Role role, UserCreds userCreds,
                     Manager manager, List<Client> clientList) {
-        super(name, lastName, phoneNumber, email, role, userCreds);
+        super(name, lastName, phoneNumber, email, userCreds);
         this.manager = manager;
         this.clientList = clientList;
     }

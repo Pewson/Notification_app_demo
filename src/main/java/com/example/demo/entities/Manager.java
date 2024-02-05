@@ -34,7 +34,7 @@ public class Manager extends User {
                    Integer phoneNumber, String email,
                    Role role, UserCreds userCreds,
                    List<Employee> employeeList, List<Client> clientList) {
-        super(name, lastName, phoneNumber, email, role, userCreds);
+        super(name, lastName, phoneNumber, email, userCreds);
         this.employeeList = employeeList;
         this.clientList = clientList;
     }

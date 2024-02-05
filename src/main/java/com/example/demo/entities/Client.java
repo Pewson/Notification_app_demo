@@ -22,7 +22,7 @@ public class Client extends User {
     @ManyToOne
     private Employee employee;
 
-    @OneToMany
+    @ManyToOne
     private Manager manager;
 
     private UserCreds userCreds;
@@ -42,7 +42,7 @@ public class Client extends User {
                   List<UUID> insuranceList,
                   Employee employee, Manager manager,
                   UserCreds userCreds1) {
-        super(name, lastName, phoneNumber, email, role, userCreds);
+        super(name, lastName, phoneNumber, email, userCreds);
         this.city = city;
         this.address = address;
         this.insuranceList = insuranceList;

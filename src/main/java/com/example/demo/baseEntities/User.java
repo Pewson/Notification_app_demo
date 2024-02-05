@@ -3,10 +3,7 @@ package com.example.demo.baseEntities;
 
 import com.example.demo.entities.UserCreds;
 import com.example.demo.global.Role;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 
 import java.util.UUID;
 
@@ -19,16 +16,23 @@ public class User {
     protected String lastName;
     protected Integer phoneNumber;
     protected String email;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "roleName")
     protected Role role;
+    @OneToOne
     protected UserCreds userCreds;
 
-    public User(String name, String lastName, Integer phoneNumber, String email, Role role, UserCreds userCreds) {
+    public User(String name, String lastName, Integer phoneNumber, String email, UserCreds userCreds) {
         this.name = name;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.role = role;
+        this.role = Role.valueOf(getClassName());
         this.userCreds = userCreds;
+    }
+
+    public String getClassName(){
+        return this.getClass().getSimpleName();
     }
 
     public User() {

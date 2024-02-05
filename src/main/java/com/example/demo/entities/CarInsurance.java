@@ -24,7 +24,7 @@ public class CarInsurance extends Insurance {
     public CarInsurance(Client client, String licensePlate,
                         LocalDate startDate, LocalDate endDate,
                         String ctName, String ctLastname, Integer ctPhone) {
-        super(client, startDate, endDate, ctName, ctLastname, ctPhone);
+        super(client, startDate, endDate);
         this.licensePlate = licensePlate;
     }
 
@@ -37,9 +37,6 @@ public class CarInsurance extends Insurance {
         this.licensePlate = carInsurance.getLicensePlate();
         this.startDate = carInsurance.getStartDate();
         this.endDate = carInsurance.getEndDate();
-        this.ctName = carInsurance.getCtName();
-        this.ctLastname = carInsurance.getCtLastname();
-        this.ctPhone = carInsurance.getCtPhone();
         } else {
             System.out.println("wrong id");
         }
