@@ -10,6 +10,8 @@ public class UserCreds {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+
+    private String role;
     private String email;
     private String username;
     private String password;

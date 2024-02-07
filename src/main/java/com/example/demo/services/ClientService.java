@@ -33,4 +33,11 @@ public class ClientService {
                 .orElseThrow(NullPointerException::new);
         return ClientDTO.toDTO(clientRepository.save(updatedClient.update(client)));
     }
+
+//    public String getRoleByUsername(String username){
+//        return clientRepository.findClientByUsername(username)
+//                .orElseThrow(NullPointerException::new).getRole().toString();
+//    }
+
+
 }

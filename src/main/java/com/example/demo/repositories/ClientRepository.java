@@ -9,8 +9,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface ClientRepository extends JpaRepository<Client, UUID> {
-    @Query(value = "SELECT i FROM Client i WHERE i.id = :id")
-    Optional<Client> findClientByID(@Param("id")UUID id);
+    @Query(value = "SELECT c FROM Client c WHERE c.id = :id")
+    Optional<Client> findClientByID(@Param("id") UUID id);
 
-    //todo wrapowanie w optionale
+    @Query(value = "SELECT c FROM Client c WHERE c.userCreds.id =:id")
+    Optional<Client> findClientByCredsId(@Param("id") UUID id);
 }

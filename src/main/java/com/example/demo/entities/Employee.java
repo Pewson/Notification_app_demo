@@ -31,7 +31,9 @@ public class Employee extends User {
         this.clientList = clientList;
     }
 
-    public Employee(){}
+
+    public Employee() {
+    }
 
     public Employee update(Employee employee) {
         if (this.id.equals(employee.id)) {

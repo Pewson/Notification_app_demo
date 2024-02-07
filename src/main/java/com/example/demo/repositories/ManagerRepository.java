@@ -14,4 +14,7 @@ public interface ManagerRepository extends JpaRepository<Manager, UUID> {
     @Query(value = "SELECT i FROM Manager i WHERE i.id = :id")
     Optional<Manager> findManagerById(@Param("id") UUID id);
 
+    @Query(value = "SELECT m FROM Manager m WHERE m.userCreds.id =:id")
+    Optional<Manager> findManagerByCredsId(@Param("id") UUID id);
+
 }
