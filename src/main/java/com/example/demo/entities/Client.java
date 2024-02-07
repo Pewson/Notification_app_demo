@@ -1,11 +1,8 @@
 package com.example.demo.entities;
 
 import com.example.demo.baseEntities.User;
-import com.example.demo.global.Role;
-import com.sun.jdi.PrimitiveValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.util.ArrayList;
@@ -36,8 +33,7 @@ public class Client extends User {
     }
 
     public Client(String name, String lastName,
-                  Integer phoneNumber, String email,
-                  Role role, UserCreds userCreds,
+                  Integer phoneNumber, String email, UserCreds userCreds,
                   String city, String address,
                   List<UUID> insuranceList,
                   Employee employee, Manager manager,

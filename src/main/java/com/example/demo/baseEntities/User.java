@@ -32,7 +32,7 @@ public class User {
     }
 
     public String getClassName(){
-        return this.getClass().getSimpleName();
+        return this.getClass().getSimpleName().toUpperCase();
     }
 
     public User() {

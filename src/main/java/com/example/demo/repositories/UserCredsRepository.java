@@ -16,7 +16,7 @@ public interface UserCredsRepository extends JpaRepository<UserCreds, UUID> {
     Optional<UserCreds> findByUsername(String username);
 
     @Query(value = """
-            SELECT role
+            SELECT role_name
             FROM Employee, Manager, Client
             WHERE username = :username
             """, nativeQuery = true)

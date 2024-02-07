@@ -26,8 +26,7 @@ public class Employee extends User {
     }
 
     public Employee(String name, String lastName,
-                    Integer phoneNumber, String email,
-                    Role role, UserCreds userCreds,
+                    Integer phoneNumber, String email, UserCreds userCreds,
                     Manager manager, List<Client> clientList) {
         super(name, lastName, phoneNumber, email, userCreds);
         this.manager = manager;

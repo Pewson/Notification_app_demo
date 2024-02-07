@@ -1,7 +1,6 @@
 package com.example.demo.services;
 
 import com.example.demo.entities.Employee;
-import com.example.demo.repositories.ClientRepository;
 import com.example.demo.repositories.EmployeeRepository;
 import com.example.demo.viewmodels.EmployeeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,24 +15,28 @@ public class EmployeeService {
     private final EmployeeRepository employeeRepository;
 
     @Autowired
-    public EmployeeService(EmployeeRepository employeeRepository){
+    public EmployeeService(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
-    public EmployeeDTO addEmployee(Employee employee){
+
+    public EmployeeDTO addEmployee(Employee employee) {
         return EmployeeDTO.toDTO(employeeRepository.save(employee));
     }
-    public EmployeeDTO updateEmployee(Employee employee){
+
+    public EmployeeDTO updateEmployee(Employee employee) {
         Employee updatedEmployee = employeeRepository.findEmployeeById(employee.getId())
                 .orElseThrow(NullPointerException::new);
         return EmployeeDTO.toDTO(employeeRepository.save(updatedEmployee.update(employee)));
     }
-    public List<EmployeeDTO> findAll(){
+
+    public List<EmployeeDTO> findAll() {
         return employeeRepository.findAll()
                 .stream()
                 .map(EmployeeDTO::toDTO)
                 .collect(Collectors.toList());
     }
-    public List<EmployeeDTO> findAllById(UUID id){
+
+    public List<EmployeeDTO> findById(UUID id) {
         return employeeRepository.findEmployeeById(id)
                 .stream()
                 .map(EmployeeDTO::toDTO)

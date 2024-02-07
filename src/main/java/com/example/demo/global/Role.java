@@ -1,5 +1,5 @@
 package com.example.demo.global;
 
 public enum Role {
-    EMPLOYEE, CLIENT, MANAGER
+    EMPLOYEE, CLIENT, MANAGER, NONE
 }
