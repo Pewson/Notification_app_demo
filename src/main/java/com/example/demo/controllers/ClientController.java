@@ -25,8 +25,9 @@ public class ClientController {
         ClientDTO response = clientService.addClient(client);
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
+
     @PutMapping("/update")
-    public ResponseEntity<ClientDTO> updateClient(@RequestBody Client client){
+    public ResponseEntity<ClientDTO> updateClient(@RequestBody Client client) {
         ClientDTO response = clientService.updateClient(client);
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }

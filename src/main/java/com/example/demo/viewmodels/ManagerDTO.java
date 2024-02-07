@@ -24,14 +24,14 @@ public class ManagerDTO {
         return email;
     }
 
-    public ManagerDTO(String name, String lastName, Integer phoneNumber, String email){
+    public ManagerDTO(String name, String lastName, Integer phoneNumber, String email) {
         this.name = name;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
 
-    public static ManagerDTO toDTO(Manager manager){
+    public static ManagerDTO toDTO(Manager manager) {
         return new ManagerDTO(
                 manager.getName(),
                 manager.getLastName(),

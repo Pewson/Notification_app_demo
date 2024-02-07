@@ -39,6 +39,7 @@ public class CarInsuranceController {
         List<CarInsuranceDTO> carInsurances = carInsuranceService.findAll();
         return new ResponseEntity<>(carInsurances, HttpStatus.OK);
     }
+
     @GetMapping("/find-by-name")
     public ResponseEntity<List<CarInsuranceDTO>> findByName(@RequestParam UUID id) {
         List<CarInsuranceDTO> carInsurances = carInsuranceService.findAllByClientId(id);

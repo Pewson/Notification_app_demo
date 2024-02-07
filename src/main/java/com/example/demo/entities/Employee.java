@@ -1,12 +1,10 @@
 package com.example.demo.entities;
 
 import com.example.demo.baseEntities.User;
-import com.example.demo.global.Role;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "Employee")
@@ -36,7 +34,7 @@ public class Employee extends User {
     public Employee(){}
 
     public Employee update(Employee employee) {
-        if (this.id.equals(employee.id)){
+        if (this.id.equals(employee.id)) {
             this.name = employee.getName();
             this.lastName = employee.getLastName();
             this.phoneNumber = employee.getPhoneNumber();

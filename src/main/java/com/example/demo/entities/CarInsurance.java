@@ -16,6 +16,7 @@ public class CarInsurance extends Insurance {
     public String getLicensePlate() {
         return licensePlate;
     }
+
     @ManyToOne
     private Employee employee;
 
@@ -31,12 +32,12 @@ public class CarInsurance extends Insurance {
     public CarInsurance() {
     }
 
-    public CarInsurance update(CarInsurance carInsurance){
-        if (this.id.equals(carInsurance.id)){
-        this.client = carInsurance.getClient();
-        this.licensePlate = carInsurance.getLicensePlate();
-        this.startDate = carInsurance.getStartDate();
-        this.endDate = carInsurance.getEndDate();
+    public CarInsurance update(CarInsurance carInsurance) {
+        if (this.id.equals(carInsurance.id)) {
+            this.client = carInsurance.getClient();
+            this.licensePlate = carInsurance.getLicensePlate();
+            this.startDate = carInsurance.getStartDate();
+            this.endDate = carInsurance.getEndDate();
         } else {
             System.out.println("wrong id");
         }

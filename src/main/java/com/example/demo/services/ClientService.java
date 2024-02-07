@@ -1,13 +1,12 @@
 package com.example.demo.services;
 
 import com.example.demo.entities.Client;
-import com.example.demo.viewmodels.ClientDTO;
 import com.example.demo.repositories.ClientRepository;
+import com.example.demo.viewmodels.ClientDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service

@@ -15,24 +15,28 @@ public class ManagerService {
     private final ManagerRepository managerRepository;
 
     @Autowired
-    public ManagerService(ManagerRepository managerRepository){
+    public ManagerService(ManagerRepository managerRepository) {
         this.managerRepository = managerRepository;
     }
-    public ManagerDTO addManager(Manager manager){
+
+    public ManagerDTO addManager(Manager manager) {
         return ManagerDTO.toDTO(managerRepository.save(manager));
     }
-    public ManagerDTO updateManager(Manager manager){
+
+    public ManagerDTO updateManager(Manager manager) {
         Manager updatedManager = managerRepository.findManagerById(manager.getId())
                 .orElseThrow(NullPointerException::new);
         return ManagerDTO.toDTO(managerRepository.save(updatedManager.update(manager)));
     }
-    public List<ManagerDTO> findAll(){
+
+    public List<ManagerDTO> findAll() {
         return managerRepository.findAll()
                 .stream()
                 .map(ManagerDTO::toDTO)
                 .collect(Collectors.toList());
     }
-    public ManagerDTO findById(UUID id){
+
+    public ManagerDTO findById(UUID id) {
         return ManagerDTO.toDTO(managerRepository.findById(id).orElseThrow(NullPointerException::new));
     }
 }

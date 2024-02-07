@@ -17,27 +17,30 @@ public class ManagerController {
     private final ManagerService managerService;
 
     @Autowired
-    public ManagerController(ManagerService managerService){
+    public ManagerController(ManagerService managerService) {
         this.managerService = managerService;
     }
 
     @PostMapping("/add")
-    public ResponseEntity<ManagerDTO> saveManager(@RequestBody Manager manager){
+    public ResponseEntity<ManagerDTO> saveManager(@RequestBody Manager manager) {
         ManagerDTO response = managerService.addManager(manager);
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
+
     @PutMapping("/update")
-    public ResponseEntity<ManagerDTO> updateManager(@RequestBody Manager manager){
+    public ResponseEntity<ManagerDTO> updateManager(@RequestBody Manager manager) {
         ManagerDTO response = managerService.updateManager(manager);
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
+
     @GetMapping("/find-all")
-    public ResponseEntity<List<ManagerDTO>> findAll(){
+    public ResponseEntity<List<ManagerDTO>> findAll() {
         List<ManagerDTO> managers = managerService.findAll();
         return new ResponseEntity<List<ManagerDTO>>(managers, HttpStatus.OK);
     }
+
     @GetMapping("/find-by-id")
-    public ResponseEntity<ManagerDTO> findById(@RequestParam UUID id){
+    public ResponseEntity<ManagerDTO> findById(@RequestParam UUID id) {
         ManagerDTO manager = managerService.findById(id);
         return new ResponseEntity<>(manager, HttpStatus.OK);
     }

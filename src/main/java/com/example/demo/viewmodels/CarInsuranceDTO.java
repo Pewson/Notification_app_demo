@@ -5,7 +5,7 @@ import com.example.demo.entities.CarInsurance;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class CarInsuranceDTO{
+public class CarInsuranceDTO {
     private UUID clientId;
     private String licensePlate;
     private LocalDate startDate;
@@ -35,7 +35,7 @@ public class CarInsuranceDTO{
         this.endDate = endDate;
     }
 
-    public static CarInsuranceDTO toDTO(CarInsurance carInsurance){
+    public static CarInsuranceDTO toDTO(CarInsurance carInsurance) {
         return new CarInsuranceDTO(
                 carInsurance.getClient().getId(),
                 carInsurance.getLicensePlate(),

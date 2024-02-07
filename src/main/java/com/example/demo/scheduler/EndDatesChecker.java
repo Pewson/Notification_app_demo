@@ -1,14 +1,13 @@
 package com.example.demo.scheduler;
 
-import com.example.demo.viewmodels.CarInsuranceDTO;
 import com.example.demo.services.CarInsuranceService;
+import com.example.demo.viewmodels.CarInsuranceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class EndDatesChecker {
@@ -25,7 +24,7 @@ public class EndDatesChecker {
                 .filter(carInsurance ->
                         carInsurance.getEndDate().isBefore(LocalDate.now().plusMonths(1)))
                 .toList();
-        if (endDateCarInsurances.size() > 0){
+        if (endDateCarInsurances.size() > 0) {
             System.out.println("dziala");
         }
     }

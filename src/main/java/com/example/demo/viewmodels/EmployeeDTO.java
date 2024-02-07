@@ -1,7 +1,6 @@
 package com.example.demo.viewmodels;
 
 import com.example.demo.entities.Employee;
-import com.example.demo.entities.Manager;
 
 import java.util.UUID;
 
@@ -11,6 +10,7 @@ public class EmployeeDTO {
     private Integer phoneNumber;
     private String email;
     private UUID managerId;
+
     public String getName() {
         return name;
     }
@@ -30,14 +30,16 @@ public class EmployeeDTO {
     public UUID getManagerId() {
         return managerId;
     }
-    public EmployeeDTO(String name, String lastName, Integer phoneNumber, String email, UUID managerId){
+
+    public EmployeeDTO(String name, String lastName, Integer phoneNumber, String email, UUID managerId) {
         this.name = name;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.managerId = managerId;
     }
-    public static EmployeeDTO toDTO(Employee employee){
+
+    public static EmployeeDTO toDTO(Employee employee) {
         return new EmployeeDTO(
                 employee.getName(),
                 employee.getLastName(),

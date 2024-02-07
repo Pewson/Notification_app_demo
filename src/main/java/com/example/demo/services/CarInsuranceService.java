@@ -32,7 +32,7 @@ public class CarInsuranceService {
         return insDto;
     }
 
-    public CarInsuranceDTO updateInsurance(CarInsurance carInsurance){
+    public CarInsuranceDTO updateInsurance(CarInsurance carInsurance) {
         CarInsurance updatedCarInsurance = carInsuranceRepository.findCarInsuranceById(carInsurance.getId())
                 .orElseThrow(NullPointerException::new);
         return CarInsuranceDTO.toDTO(carInsuranceRepository.save(updatedCarInsurance.update(carInsurance)));

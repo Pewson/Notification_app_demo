@@ -1,6 +1,7 @@
 package com.example.demo.viewmodels;
 
 import com.example.demo.entities.Client;
+
 //todo maskowanie hasla/loginu
 public class ClientDTO {
     private String name;

@@ -31,7 +31,7 @@ public class User {
         this.userCreds = userCreds;
     }
 
-    public String getClassName(){
+    public String getClassName() {
         return this.getClass().getSimpleName().toUpperCase();
     }
 
