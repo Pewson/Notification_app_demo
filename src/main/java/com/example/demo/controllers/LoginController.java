@@ -19,13 +19,13 @@ public class LoginController {
         return "Hello, world";
     }
 
-    @PreAuthorize("hasRole('ROLE_CLIENT')")
+    @PreAuthorize("hasRole('ROLE_CLIENT', 'ROLE_EMPLOYEE', 'ROLE_MANAGER')")
     @GetMapping("/client")
     public String client() {
         return "Hello, client";
     }
 
-    @PreAuthorize("hasRole('ROLE_EMPLOYEE')")
+    @PreAuthorize("hasRole('ROLE_EMPLOYEE', 'ROLE_MANAGER')")
     @GetMapping("/employee")
     public String employee() {
         return "Hello, employee";
