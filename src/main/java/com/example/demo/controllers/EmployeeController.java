@@ -2,7 +2,7 @@ package com.example.demo.controllers;
 
 import com.example.demo.entities.Employee;
 import com.example.demo.services.EmployeeService;
-import com.example.demo.viewmodels.EmployeeDTO;
+import com.example.demo.viewModels.EmployeeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

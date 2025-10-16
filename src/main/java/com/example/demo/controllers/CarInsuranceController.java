@@ -3,7 +3,7 @@ package com.example.demo.controllers;
 import com.example.demo.entities.CarInsurance;
 import com.example.demo.services.CarInsuranceService;
 import com.example.demo.services.ClientService;
-import com.example.demo.viewmodels.CarInsuranceDTO;
+import com.example.demo.viewModels.CarInsuranceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -13,6 +13,12 @@ public class CarInsurance extends Insurance {
 
     private String licensePlate;
 
+    private String carBrand;
+    private String carModel;
+    private String VIN;
+    private LocalDate productionDate;
+    private Integer engineCapacityCCM;
+
     public String getLicensePlate() {
         return licensePlate;
     }
@@ -24,9 +30,17 @@ public class CarInsurance extends Insurance {
 
     public CarInsurance(Client client, String licensePlate,
                         LocalDate startDate, LocalDate endDate,
-                        String ctName, String ctLastname, Integer ctPhone) {
+                        String carBrand, String carModel,
+                        String VIN, LocalDate productionDate,
+                        Integer engineCapacityCCM) {
         super(client, startDate, endDate);
         this.licensePlate = licensePlate;
+        this.carBrand = carBrand;
+        this.carModel = carModel;
+        this.VIN = VIN;
+        this.productionDate = productionDate;
+        this.engineCapacityCCM = engineCapacityCCM;
+
     }
 
     public CarInsurance() {

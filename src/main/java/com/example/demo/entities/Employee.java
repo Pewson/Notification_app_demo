@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "Employee")
 public class Employee extends User {
-
+    //ubezpieczyciel, pracownik
     @ManyToOne(fetch = FetchType.LAZY)
     private Manager manager;
     @OneToMany(fetch = FetchType.LAZY)
@@ -28,7 +28,7 @@ public class Employee extends User {
                     Manager manager, List<Client> clientList) {
         super(name, lastName, phoneNumber, email, userCreds);
         this.manager = manager;
-        this.clientList = clientList;
+        this.clientList = (clientList != null) ? clientList : new ArrayList<>();;
     }
 
 

@@ -4,7 +4,7 @@ import com.example.demo.entities.CarInsurance;
 import com.example.demo.entities.Client;
 import com.example.demo.repositories.CarInsuranceRepository;
 import com.example.demo.repositories.ClientRepository;
-import com.example.demo.viewmodels.CarInsuranceDTO;
+import com.example.demo.viewModels.CarInsuranceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

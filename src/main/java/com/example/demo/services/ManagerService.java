@@ -2,7 +2,7 @@ package com.example.demo.services;
 
 import com.example.demo.entities.Manager;
 import com.example.demo.repositories.ManagerRepository;
-import com.example.demo.viewmodels.ManagerDTO;
+import com.example.demo.viewModels.ManagerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

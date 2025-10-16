@@ -1,6 +1,7 @@
 package com.example.demo.entities;
 
 import jakarta.persistence.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.UUID;
 
@@ -11,14 +12,8 @@ public class UserCreds {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    private String role;
-    private String email;
     private String username;
     private String password;
-
-    public String getEmail() {
-        return email;
-    }
 
     public String getUsername() {
         return username;
@@ -36,14 +31,13 @@ public class UserCreds {
     public UserCreds() {
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public UserCreds(String username, String password) {
+        this.username = username;
+        this.password = encodePassword(password);
     }
 
-    public UserCreds(String email, String username, String password) {
-        this.email = email;
-        this.username = username;
-        this.password = password;
+    public String encodePassword(String password){
+        return new BCryptPasswordEncoder().encode(password);
     }
 
 }

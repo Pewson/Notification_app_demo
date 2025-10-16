@@ -32,22 +32,28 @@ public class DemoApplication {
                                         ManagerRepository managerRepository,
                                         EmployeeRepository employeeRepository,
                                         ClientRepository clientRepository,
-                                        UserCredsRepository userCredsRepository,
-                                        PasswordEncoder encoder) {
+                                        UserCredsRepository userCredsRepository) {
         return args -> {
             UserCreds managerCreds = userCredsRepository
-                    .save(new UserCreds("manager@Test.com",
-                            "manager", encoder.encode("password")));
-            UserCreds employeeCreds = userCredsRepository.save(new UserCreds("employee@Test.com", "employee", encoder.encode("password")));
-            UserCreds clientCreds = userCredsRepository.save(new UserCreds("client@Test.com", "client", encoder.encode("password")));
+                    .save(new UserCreds("manager", "password"));
+            UserCreds employeeCreds = userCredsRepository.save(new UserCreds("employee", "password"));
+            UserCreds clientCreds = userCredsRepository.save(new UserCreds("client", "password"));
             Manager manager = managerRepository.save(new Manager("Manager", "Test", 12312312, "Manager@Test.com",
                     managerCreds, null, null));
             Employee employee = employeeRepository.save(new Employee("Employee", "Test", 2322423, "Employee@Test.com",
                     employeeCreds, manager, null));
-            clientRepository.save(new Client("Client", "Test",
-                    1234123, "client@Test.com", employeeCreds,
-                    "Wypizdow", "Droga do wypizdowa 12", null, employee,
-                    manager, clientCreds));
+            clientRepository.save(new Client(
+                    "Client",
+                    "Test",
+                    1234123,
+                    "client@Test.com",
+                    clientCreds,
+                    "sloneczna",
+                    "Droga do slonecznej 12",
+                    null,
+                    1254215125,
+                    "K24G2451252",
+                    employee));
         };
     }
 

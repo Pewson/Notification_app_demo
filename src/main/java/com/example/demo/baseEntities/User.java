@@ -4,6 +4,7 @@ package com.example.demo.baseEntities;
 import com.example.demo.entities.UserCreds;
 import com.example.demo.global.Role;
 import jakarta.persistence.*;
+import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.UUID;
 
