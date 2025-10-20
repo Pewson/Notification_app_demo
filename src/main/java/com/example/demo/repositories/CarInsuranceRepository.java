@@ -19,4 +19,7 @@ public interface CarInsuranceRepository extends JpaRepository<CarInsurance, UUID
     @Query("SELECT i FROM CarInsurance i WHERE i.client.id = :id")
     Collection<Optional<CarInsurance>> findCarInsuranceByClientId(@Param("id") UUID id);
 
+    @Query("SELECT i FROM CarInsurance i WHERE i.client.name = :name")
+    Collection<Optional<CarInsurance>> findCarInsuranceByClientName(@Param("name") String name);
+
 }

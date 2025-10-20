@@ -1,48 +1,30 @@
 package com.example.demo.entities;
 
-import com.example.demo.interfaces.Insurance;
-import com.example.demo.viewmodels.ClientDTO;
-import jakarta.persistence.*;
-
+import com.example.demo.baseEntities.User;
+import com.example.demo.global.Role;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
 @Table(name = "client")
-public class Client {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
-    private String name;
-    private String lastName;
-    private Integer phoneNumber;
-    private String email;
+public class Client extends User {
+    //osoba ubezpieczona
+    private static final Logger logger = LoggerFactory.getLogger(Client.class);
     private String city;
     private String address;
-    private List<UUID> insuranceList;
-    private String login;
-    private String password;
+    private Integer pesel;
+    private String NIP;
+    private List<UUID> insuranceList = new ArrayList<>();
 
-
-    public UUID getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public Integer getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public String getEmail() {
-        return email;
-    }
+    @ManyToOne
+    private Employee employee;
 
     public String getCity() {
         return city;
@@ -53,31 +35,54 @@ public class Client {
     }
 
     public Client(String name, String lastName,
-                  Integer phoneNumber, String email,
+                  Integer phoneNumber, String email, UserCreds userCreds,
                   String city, String address,
-                  String login, String password) {
-        this.name = name;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
+                  List<UUID> insuranceList,
+                  Integer pesel, String NIP,
+                  Employee employee) {
+        super(name, lastName, phoneNumber, email, userCreds);
+        this.role = Role.CLIENT;
         this.city = city;
         this.address = address;
-        this.login = login;
-        this.password = password;
+        this.insuranceList = (insuranceList != null) ? insuranceList : new ArrayList<>();
+        this.pesel = pesel;
+        this.NIP = NIP;
+        this.employee = employee;
     }
 
     public Client() {
+        this.role = Role.CLIENT;
     }
 
-    public static Client toEntity(ClientDTO clientDTO, String login, String password){
-        return new Client(
-                clientDTO.getName(),
-                clientDTO.getLastName(),
-                clientDTO.getPhoneNumber(),
-                clientDTO.getEmail(),
-                clientDTO.getCity(),
-                clientDTO.getAddress(),
-                login,
-                password);
+    public Client update(Client client) {
+        if (this.id.equals(client.id)) {
+            this.name = client.getName();
+            this.lastName = client.getLastName();
+            this.phoneNumber = client.getPhoneNumber();
+            this.email = client.getEmail();
+            this.city = client.getCity();
+            this.address = client.getAddress();
+        } else {
+            logger.warn("ID Mismatch: existing ID = {}, provided ID = {}", this.id, client.id);
+        }
+        return this;
     }
+
+    public void updateInsuranceList(UUID insId) {
+        this.insuranceList.add(insId);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Client client)) return false;
+        return Objects.equals(id, client.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
 }
+

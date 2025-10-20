@@ -1,13 +1,12 @@
 package com.example.demo.services;
 
 import com.example.demo.entities.Client;
-import com.example.demo.viewmodels.ClientDTO;
 import com.example.demo.repositories.ClientRepository;
+import com.example.demo.viewModels.ClientDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,7 +19,13 @@ public class ClientService {
     }
 
     //todo maskowanie hasla/loginu + hashowanie
-    public ClientDTO addClient(Client client) { return ClientDTO.toDTO(clientRepository.save(client)); }
+    public ClientDTO addClient(Client client) {
+        if (client.getRole() != com.example.demo.global.Role.CLIENT){
+            throw new IllegalArgumentException("Role must be CLIENT");
+        } else {
+        return ClientDTO.toDTO(clientRepository.save(client));
+        }
+    }
 
     public List<ClientDTO> findAll() {
         return clientRepository.findAll()
@@ -29,6 +34,16 @@ public class ClientService {
                 .collect(Collectors.toList());
     }
 
-    public ClientDTO findClientById(UUID id){
-        return ClientDTO.toDTO(clientRepository.findById(id).orElse(new Client())); }
+    public ClientDTO updateClient(Client client) {
+        Client updatedClient = clientRepository.findClientByID(client.getId())
+                .orElseThrow(NullPointerException::new);
+        return ClientDTO.toDTO(clientRepository.save(updatedClient.update(client)));
+    }
+
+//    public String getRoleByUsername(String username){
+//        return clientRepository.findClientByUsername(username)
+//                .orElseThrow(NullPointerException::new).getRole().toString();
+//    }
+
+
 }

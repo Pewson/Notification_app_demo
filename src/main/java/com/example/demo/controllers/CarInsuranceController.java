@@ -3,7 +3,7 @@ package com.example.demo.controllers;
 import com.example.demo.entities.CarInsurance;
 import com.example.demo.services.CarInsuranceService;
 import com.example.demo.services.ClientService;
-import com.example.demo.viewmodels.CarInsuranceDTO;
+import com.example.demo.viewModels.CarInsuranceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,19 +36,19 @@ public class CarInsuranceController {
 
     @GetMapping("/find-all")
     public ResponseEntity<List<CarInsuranceDTO>> findAll() {
-        List<CarInsuranceDTO> carInsurances = carInsuranceService.getAll();
+        List<CarInsuranceDTO> carInsurances = carInsuranceService.findAll();
         return new ResponseEntity<>(carInsurances, HttpStatus.OK);
     }
 
     @GetMapping("/find-by-name")
     public ResponseEntity<List<CarInsuranceDTO>> findByName(@RequestParam UUID id) {
-        List<CarInsuranceDTO> carInsurances = carInsuranceService.getAllByName(id);
+        List<CarInsuranceDTO> carInsurances = carInsuranceService.findAllByClientId(id);
         return new ResponseEntity<>(carInsurances, HttpStatus.OK);
     }
 
-    @GetMapping("/find-by-end")
-    public ResponseEntity<List<CarInsuranceDTO>> findByEnd(@RequestParam UUID id) {
-        List<CarInsuranceDTO> carInsurances = carInsuranceService.getEndDateInsurance(id);
+    @GetMapping("/find-expiring")
+    public ResponseEntity<List<CarInsuranceDTO>> findByExpiring(@RequestParam UUID id) {
+        List<CarInsuranceDTO> carInsurances = carInsuranceService.findExpiringInsurance(id);
         return new ResponseEntity<>(carInsurances, HttpStatus.OK);
     }
 }
