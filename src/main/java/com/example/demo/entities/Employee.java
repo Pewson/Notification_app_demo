@@ -1,6 +1,7 @@
 package com.example.demo.entities;
 
 import com.example.demo.baseEntities.User;
+import com.example.demo.global.Role;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -27,12 +28,14 @@ public class Employee extends User {
                     Integer phoneNumber, String email, UserCreds userCreds,
                     Manager manager, List<Client> clientList) {
         super(name, lastName, phoneNumber, email, userCreds);
+        this.role = Role.EMPLOYEE;
         this.manager = manager;
-        this.clientList = (clientList != null) ? clientList : new ArrayList<>();;
+        this.clientList = (clientList != null) ? clientList : new ArrayList<>();
     }
 
 
     public Employee() {
+        this.role = Role.EMPLOYEE;
     }
 
     public Employee update(Employee employee) {

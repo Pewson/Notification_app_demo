@@ -6,6 +6,7 @@ import com.example.demo.viewModels.ClientDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,6 +34,7 @@ public class ClientController {
     }
 
     @GetMapping("/find-all")
+    @PreAuthorize("hasRole('ROLE_EMPLOYEE') or hasRole('ROLE_MANAGER')")
     public ResponseEntity<List<ClientDTO>> findAll() {
         List<ClientDTO> clients = clientService.findAll();
         return new ResponseEntity<>(clients, HttpStatus.OK);

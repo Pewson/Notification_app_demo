@@ -19,7 +19,13 @@ public class ClientService {
     }
 
     //todo maskowanie hasla/loginu + hashowanie
-    public ClientDTO addClient(Client client) { return ClientDTO.toDTO(clientRepository.save(client)); }
+    public ClientDTO addClient(Client client) {
+        if (client.getRole() != com.example.demo.global.Role.CLIENT){
+            throw new IllegalArgumentException("Role must be CLIENT");
+        } else {
+        return ClientDTO.toDTO(clientRepository.save(client));
+        }
+    }
 
     public List<ClientDTO> findAll() {
         return clientRepository.findAll()

@@ -1,6 +1,7 @@
 package com.example.demo.entities;
 
 import com.example.demo.baseEntities.User;
+import com.example.demo.global.Role;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -40,6 +41,7 @@ public class Client extends User {
                   Integer pesel, String NIP,
                   Employee employee) {
         super(name, lastName, phoneNumber, email, userCreds);
+        this.role = Role.CLIENT;
         this.city = city;
         this.address = address;
         this.insuranceList = (insuranceList != null) ? insuranceList : new ArrayList<>();
@@ -49,6 +51,7 @@ public class Client extends User {
     }
 
     public Client() {
+        this.role = Role.CLIENT;
     }
 
     public Client update(Client client) {

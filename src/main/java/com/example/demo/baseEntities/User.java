@@ -28,7 +28,7 @@ public class User {
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.role = Role.valueOf(getClassName());
+        this.role = Role.NONE;
         this.userCreds = userCreds;
     }
 

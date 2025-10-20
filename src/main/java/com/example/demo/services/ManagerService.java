@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.entities.Manager;
+import com.example.demo.global.Role;
 import com.example.demo.repositories.ManagerRepository;
 import com.example.demo.viewModels.ManagerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,11 @@ public class ManagerService {
     }
 
     public ManagerDTO addManager(Manager manager) {
-        return ManagerDTO.toDTO(managerRepository.save(manager));
+        if (manager.getRole() != Role.MANAGER){
+            throw new IllegalArgumentException("Role must be MANAGER");
+        } else {
+            return ManagerDTO.toDTO(managerRepository.save(manager));
+        }
     }
 
     public ManagerDTO updateManager(Manager manager) {

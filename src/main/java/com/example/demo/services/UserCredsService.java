@@ -4,6 +4,8 @@ import com.example.demo.entities.UserCreds;
 import com.example.demo.global.Role;
 import com.example.demo.repositories.UserCredsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.management.relation.RoleNotFoundException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -27,29 +30,35 @@ public class UserCredsService implements UserDetailsService {
     }
 
     public UUID findCredsIdByUsername(String username) {
-        return userCredsRepository.findByUsername(username).orElseThrow(NullPointerException::new).getId();
+        return userCredsRepository.findByUsername(username)
+                .orElseThrow(
+                        ()->new UsernameNotFoundException("User not found: " + username)).getId();
     }
 
-    public Role getRoleFromRepo(String username) {
+    public Role getRoleFromRepo(String username) throws RoleNotFoundException {
         UUID id = findCredsIdByUsername(username);
-        return userCredsRepository.findRoleById(id).orElseThrow(NullPointerException::new);
+        return userCredsRepository.findRoleByUCId(id)
+                .orElseThrow(
+                        ()-> new RoleNotFoundException("Role of user: " + username + " not found"));
     }
 
-    /**
-     * @param username
-     * @return new UserDetails.User
-     * @throws UsernameNotFoundException
-     */
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserCreds userCreds = userCredsRepository
-                .findByUsername(username)
+        UserCreds userCreds = userCredsRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Username not found: " + username));
-        return new User(userCreds.getUsername(), userCreds.getPassword(), getAuthority(userCreds));
+
+        Role role;
+        try {
+            role = getRoleFromRepo(username);
+        } catch (RoleNotFoundException e) {
+            throw new UsernameNotFoundException("Role not found for user: " + username, e);
+        }
+
+        return new User(userCreds.getUsername(), userCreds.getPassword(), getAuthority(role));
     }
 
-    private List<SimpleGrantedAuthority> getAuthority(UserCreds userCreds) {
-        Role role = getRoleFromRepo(userCreds.getUsername());
+    private List<SimpleGrantedAuthority> getAuthority(Role role) {
         return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + role));
     }
 

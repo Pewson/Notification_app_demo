@@ -24,5 +24,5 @@ public interface UserCredsRepository extends JpaRepository<UserCreds, UUID> {
             LEFT JOIN Employee e on e.user_creds_id = User_Credentials.id
             WHERE User_credentials.id = :id
             """, nativeQuery = true)
-    Optional<Role> findRoleById(@Param("id") UUID id);
+    Optional<Role> findRoleByUCId(@Param("id") UUID id);
 }

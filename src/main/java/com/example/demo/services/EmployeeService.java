@@ -20,7 +20,11 @@ public class EmployeeService {
     }
 
     public EmployeeDTO addEmployee(Employee employee) {
+        if (employee.getRole() != com.example.demo.global.Role.EMPLOYEE){
+            throw new IllegalArgumentException("Role must be EMPLOYEE");
+        } else {
         return EmployeeDTO.toDTO(employeeRepository.save(employee));
+        }
     }
 
     public EmployeeDTO updateEmployee(Employee employee) {

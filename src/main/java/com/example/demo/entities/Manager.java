@@ -1,6 +1,7 @@
 package com.example.demo.entities;
 
 import com.example.demo.baseEntities.User;
+import com.example.demo.global.Role;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
@@ -27,16 +28,19 @@ public class Manager extends User {
         return clientList;
     }
 
-    public Manager() {
+    public Manager(){
+        this.role = Role.MANAGER;
     }
 
     public Manager(String name, String lastName,
                    Integer phoneNumber, String email, UserCreds userCreds,
                    List<Employee> employeeList, List<Client> clientList) {
         super(name, lastName, phoneNumber, email, userCreds);
+        this.role = Role.MANAGER;
         this.employeeList = employeeList;
         this.clientList = clientList;
     }
+
 
     public Manager update(Manager manager) {
         if (this.id.equals(manager.id)) {
