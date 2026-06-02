@@ -1,8 +1,8 @@
 package com.example.demo.controllers;
 
 import com.example.demo.entities.CarInsurance;
+import com.example.demo.services.AuthService;
 import com.example.demo.services.CarInsuranceService;
-import com.example.demo.services.ClientService;
 import com.example.demo.viewModels.CarInsuranceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,10 +16,12 @@ import java.util.UUID;
 @RequestMapping("/car-insurance")
 public class CarInsuranceController {
     private final CarInsuranceService carInsuranceService;
+    private final AuthService authService;
 
     @Autowired
-    public CarInsuranceController(CarInsuranceService carInsuranceService, ClientService clientService) {
+    public CarInsuranceController(CarInsuranceService carInsuranceService, AuthService authService) {
         this.carInsuranceService = carInsuranceService;
+        this.authService = authService;
     }
 
     @PostMapping("/add")
@@ -40,8 +42,8 @@ public class CarInsuranceController {
         return new ResponseEntity<>(carInsurances, HttpStatus.OK);
     }
 
-    @GetMapping("/find-by-name")
-    public ResponseEntity<List<CarInsuranceDTO>> findByName(@RequestParam UUID id) {
+    @GetMapping("/find-by-ClientId")
+    public ResponseEntity<List<CarInsuranceDTO>> findByClientId(@RequestParam UUID id) {
         List<CarInsuranceDTO> carInsurances = carInsuranceService.findAllByClientId(id);
         return new ResponseEntity<>(carInsurances, HttpStatus.OK);
     }
@@ -49,6 +51,16 @@ public class CarInsuranceController {
     @GetMapping("/find-expiring")
     public ResponseEntity<List<CarInsuranceDTO>> findByExpiring(@RequestParam UUID id) {
         List<CarInsuranceDTO> carInsurances = carInsuranceService.findExpiringInsurance(id);
+        return new ResponseEntity<>(carInsurances, HttpStatus.OK);
+    }
+
+    @GetMapping("/my-insurance")
+    public ResponseEntity<List<CarInsuranceDTO>> findMyInsurance() {
+        /***
+        This method retrieves the car insurance policies associated with the currently authenticated client.
+        ***/
+        UUID myId = authService.getLoggedInClientId();
+        List<CarInsuranceDTO> carInsurances = carInsuranceService.findAllByClientId(myId);
         return new ResponseEntity<>(carInsurances, HttpStatus.OK);
     }
 }

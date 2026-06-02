@@ -23,6 +23,8 @@ public class Client extends User {
     private String NIP;
     private List<UUID> insuranceList = new ArrayList<>();
 
+    private List<UUID> collectiveInsuranceList = new ArrayList<>();
+
     @ManyToOne
     private Employee employee;
 
@@ -32,6 +34,22 @@ public class Client extends User {
 
     public String getAddress() {
         return address;
+    }
+
+    public Integer getPesel() {
+        return pesel;
+    }
+
+    public String getNIP() {
+        return NIP;
+    }
+
+    public List<UUID> getInsuranceList() {
+        return insuranceList;
+    }
+
+    public Employee getEmployee() {
+        return employee;
     }
 
     public Client(String name, String lastName,
@@ -84,5 +102,8 @@ public class Client extends User {
         return Objects.hash(id);
     }
 
+    public void setInsuranceList(List<UUID> insuranceList) {
+        this.insuranceList = insuranceList;
+    }
 }
 

@@ -1,4 +1,4 @@
-package com.example.demo.viewmodels;
+package com.example.demo.viewModels;
 
 public class LoginRequest {
     private String username;

@@ -51,4 +51,8 @@ public class Employee extends User {
         }
         return this;
     }
+
+    public void setClientList(List<Client> clientList) {
+        this.clientList = clientList;
+    }
 }

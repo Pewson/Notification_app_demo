@@ -9,6 +9,7 @@ import jakarta.persistence.Table;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "Manager")
@@ -16,16 +17,8 @@ public class Manager extends User {
     @OneToMany(fetch = FetchType.LAZY)
     private List<Employee> employeeList = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Client> clientList = new ArrayList<>();
-
-
     public List<Employee> getEmployeeList() {
         return employeeList;
-    }
-
-    public List<Client> getClientList() {
-        return clientList;
     }
 
     public Manager(){
@@ -34,11 +27,10 @@ public class Manager extends User {
 
     public Manager(String name, String lastName,
                    Integer phoneNumber, String email, UserCreds userCreds,
-                   List<Employee> employeeList, List<Client> clientList) {
+                   List<Employee> employeeList) {
         super(name, lastName, phoneNumber, email, userCreds);
         this.role = Role.MANAGER;
         this.employeeList = employeeList;
-        this.clientList = clientList;
     }
 
 
@@ -53,5 +45,45 @@ public class Manager extends User {
             System.out.println("ID Mismatch");
         }
         return this;
+    }
+
+
+    @Override
+    public UUID getId() {
+        return super.getId();
+    }
+
+    @Override
+    public String getName() {
+        return super.getName();
+    }
+
+    @Override
+    public String getLastName() {
+        return super.getLastName();
+    }
+
+    @Override
+    public Integer getPhoneNumber() {
+        return super.getPhoneNumber();
+    }
+
+    @Override
+    public String getEmail() {
+        return super.getEmail();
+    }
+
+    @Override
+    public Role getRole() {
+        return super.getRole();
+    }
+
+    @Override
+    public UserCreds getUserCreds() {
+        return super.getUserCreds();
+    }
+
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
     }
 }

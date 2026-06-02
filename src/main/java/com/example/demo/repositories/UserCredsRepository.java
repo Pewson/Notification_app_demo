@@ -25,4 +25,11 @@ public interface UserCredsRepository extends JpaRepository<UserCreds, UUID> {
             WHERE User_credentials.id = :id
             """, nativeQuery = true)
     Optional<Role> findRoleByUCId(@Param("id") UUID id);
+
+    @Query(value = """
+            SELECT c.id
+            FROM Client c
+            WHERE c.user_creds_id = :id
+            """, nativeQuery = true)
+    Optional<UUID> findClientIdByUCId(@Param("id") UUID id);
 }

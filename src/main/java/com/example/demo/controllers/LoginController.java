@@ -1,6 +1,6 @@
 package com.example.demo.controllers;
 
-import com.example.demo.viewmodels.LoginRequest;
+import com.example.demo.viewModels.LoginRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

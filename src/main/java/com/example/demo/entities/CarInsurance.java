@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -23,17 +24,12 @@ public class CarInsurance extends Insurance {
         return licensePlate;
     }
 
-    @ManyToOne
-    private Employee employee;
-
-    private Client client;
-
     public CarInsurance(Client client, String licensePlate,
                         LocalDate startDate, LocalDate endDate,
-                        String carBrand, String carModel,
-                        String VIN, LocalDate productionDate,
-                        Integer engineCapacityCCM) {
-        super(client, startDate, endDate);
+                        Employee employee, BigDecimal totalCostAmount, String carBrand,
+                        String carModel, String VIN,
+                        LocalDate productionDate, Integer engineCapacityCCM) {
+        super(client, startDate, endDate, employee, totalCostAmount);
         this.licensePlate = licensePlate;
         this.carBrand = carBrand;
         this.carModel = carModel;
@@ -56,6 +52,26 @@ public class CarInsurance extends Insurance {
             System.out.println("wrong id");
         }
         return this;
+    }
+
+    public String getCarBrand() {
+        return carBrand;
+    }
+
+    public String getCarModel() {
+        return carModel;
+    }
+
+    public String getVIN() {
+        return VIN;
+    }
+
+    public LocalDate getProductionDate() {
+        return productionDate;
+    }
+
+    public Integer getEngineCapacityCCM() {
+        return engineCapacityCCM;
     }
 }
 

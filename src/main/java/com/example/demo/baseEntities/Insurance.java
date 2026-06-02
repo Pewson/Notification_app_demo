@@ -5,6 +5,7 @@ import com.example.demo.entities.Employee;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -21,12 +22,14 @@ public class Insurance {
     protected LocalDate endDate;
     @ManyToOne
     protected Employee employee;
+    protected BigDecimal totalCostAmount;
 
-    public Insurance(Client client, LocalDate startDate,
-                     LocalDate endDate) {
+    public Insurance(Client client, LocalDate startDate, LocalDate endDate, Employee employee, BigDecimal totalCostAmount) {
         this.client = client;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.employee = employee;
+        this.totalCostAmount = totalCostAmount;
     }
 
     public UUID getId() {
@@ -43,6 +46,14 @@ public class Insurance {
 
     public LocalDate getEndDate() {
         return endDate;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public BigDecimal getTotalCostAmount() {
+        return totalCostAmount;
     }
 
     public Insurance() {

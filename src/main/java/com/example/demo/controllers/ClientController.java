@@ -28,6 +28,7 @@ public class ClientController {
     }
 
     @PutMapping("/update")
+    @PreAuthorize("hasRole('ROLE_EMPLOYEE') or hasRole('ROLE_MANAGER')")
     public ResponseEntity<ClientDTO> updateClient(@RequestBody Client client) {
         ClientDTO response = clientService.updateClient(client);
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
